@@ -1,0 +1,17 @@
+{
+  "name": "RHMAP React Primer",
+  "version": "0.0.1",
+  "description": "Red Hat Mobile Application Platform React Demo",
+  "main": "index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "react": "~0.14.8"
+  }
+}

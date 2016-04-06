@@ -26,11 +26,27 @@ module.exports = function (grunt) {
       default_local_server_url: 'http://localhost:8001'
     },
 
+    babel: {
+      options: {
+        plugins: ['transform-react-jsx'],
+        presets: ['es2015', 'react']
+      },
+      jsx: {
+        files: [{
+          expand: true,
+          cwd: 'www/app/', // Custom folder
+          src: ['*.jsx'],
+          dest: 'www/build/', // Custom folder
+          ext: '.js'
+        }]
+      }
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['<%= app.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all'],
+        files: ['<%= app.app %>/app/{,*/}*.jsx'],
+        tasks: ['babel'],
         options: {
           livereload: 35730
         }
@@ -47,7 +63,7 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= app.app %>/{,*/}*.html',
+          '<%= app.app %>/app/{,*/}*.jsx',
           '.tmp/styles/{,*/}*.css',
           '<%= app.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
@@ -93,6 +109,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'babel',
       'clean:server',
       'connect:livereload',
       'watch'
