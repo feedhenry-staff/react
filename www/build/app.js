@@ -8,6 +8,7 @@ var CloudForm = React.createClass({
   },
   handleClick: function handleClick(event) {
     var that = this;
+    this.setState({ message: 'Calling Cloud...' });
     $fh.cloud({
       path: 'hello',
       data: {
@@ -15,7 +16,6 @@ var CloudForm = React.createClass({
       }
     }, function (res) {
       that.setState({ message: res.msg });
-      console.log(res.msg);
     }, function (code, errorprops, params) {
       alert('An error occured: ' + code + ' : ' + errorprops);
     });
