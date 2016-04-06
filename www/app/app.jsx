@@ -1,15 +1,21 @@
 var CloudForm = React.createClass({
   getInitialState: function() {
-    return {message: ""};
+    return {message: "", helloTo: ""};
+  },
+  handleChange: function(evt) {
+    this.setState({
+      helloTo: evt.target.value
+    });
   },
   handleClick: function(event) {
+      console.log(this.state.helloTo);
   	  var that = this;
       this.setState({message: 'Calling Cloud...'});
       $fh.cloud(
       {
         path: 'hello',
         data: {
-          hello: this.helloTo.value
+          hello: this.state.helloTo
         }
       },
       function (res) {
@@ -23,7 +29,7 @@ var CloudForm = React.createClass({
     return (
     <div>
       	<div className="input-div">
-	        <input id="hello_to" type="text" ref={(ref) => this.helloTo = ref}  className="input-text" placeholder="Enter Your Name Here."/>
+	        <input type="text" value={this.state.helloTo} onChange={this.handleChange}  className="input-text" placeholder="Enter Your Name Here."/>
 	    </div>
 	    <button onClick={this.handleClick} type="button" className="say-hello-button">Say Hello From The Cloud</button>
 	    <div id="cloudResponse" className="cloudResponse">{this.state.message}</div>	

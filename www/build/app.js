@@ -1,18 +1,24 @@
-'use strict';
+"use strict";
 
 var CloudForm = React.createClass({
-  displayName: 'CloudForm',
+  displayName: "CloudForm",
 
   getInitialState: function getInitialState() {
-    return { message: "" };
+    return { message: "", helloTo: "" };
+  },
+  handleChange: function handleChange(evt) {
+    this.setState({
+      helloTo: evt.target.value
+    });
   },
   handleClick: function handleClick(event) {
+    console.log(this.state.helloTo);
     var that = this;
     this.setState({ message: 'Calling Cloud...' });
     $fh.cloud({
       path: 'hello',
       data: {
-        hello: this.helloTo.value
+        hello: this.state.helloTo
       }
     }, function (res) {
       that.setState({ message: res.msg });
@@ -21,26 +27,22 @@ var CloudForm = React.createClass({
     });
   },
   render: function render() {
-    var _this = this;
-
     return React.createElement(
-      'div',
+      "div",
       null,
       React.createElement(
-        'div',
-        { className: 'input-div' },
-        React.createElement('input', { id: 'hello_to', type: 'text', ref: function ref(_ref) {
-            return _this.helloTo = _ref;
-          }, className: 'input-text', placeholder: 'Enter Your Name Here.' })
+        "div",
+        { className: "input-div" },
+        React.createElement("input", { type: "text", value: this.state.helloTo, onChange: this.handleChange, className: "input-text", placeholder: "Enter Your Name Here." })
       ),
       React.createElement(
-        'button',
-        { onClick: this.handleClick, type: 'button', className: 'say-hello-button' },
-        'Say Hello From The Cloud'
+        "button",
+        { onClick: this.handleClick, type: "button", className: "say-hello-button" },
+        "Say Hello From The Cloud"
       ),
       React.createElement(
-        'div',
-        { id: 'cloudResponse', className: 'cloudResponse' },
+        "div",
+        { id: "cloudResponse", className: "cloudResponse" },
         this.state.message
       )
     );
