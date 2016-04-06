@@ -9,7 +9,7 @@ var CloudForm = React.createClass({
       {
         path: 'hello',
         data: {
-          hello: document.getElementById('hello_to').value
+          hello: this.helloTo.value
         }
       },
       function (res) {
@@ -23,7 +23,7 @@ var CloudForm = React.createClass({
     return (
     <div>
       	<div className="input-div">
-	        <input id="hello_to" type="text" className="input-text" placeholder="Enter Your Name Here."/>
+	        <input id="hello_to" type="text" ref={(ref) => this.helloTo = ref}  className="input-text" placeholder="Enter Your Name Here."/>
 	    </div>
 	    <button onClick={this.handleClick} type="button" className="say-hello-button">Say Hello From The Cloud</button>
 	    <div id="cloudResponse" className="cloudResponse">{this.state.message}</div>	

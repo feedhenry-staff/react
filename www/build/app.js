@@ -12,7 +12,7 @@ var CloudForm = React.createClass({
     $fh.cloud({
       path: 'hello',
       data: {
-        hello: document.getElementById('hello_to').value
+        hello: this.helloTo.value
       }
     }, function (res) {
       that.setState({ message: res.msg });
@@ -21,13 +21,17 @@ var CloudForm = React.createClass({
     });
   },
   render: function render() {
+    var _this = this;
+
     return React.createElement(
       'div',
       null,
       React.createElement(
         'div',
         { className: 'input-div' },
-        React.createElement('input', { id: 'hello_to', type: 'text', className: 'input-text', placeholder: 'Enter Your Name Here.' })
+        React.createElement('input', { id: 'hello_to', type: 'text', ref: function ref(_ref) {
+            return _this.helloTo = _ref;
+          }, className: 'input-text', placeholder: 'Enter Your Name Here.' })
       ),
       React.createElement(
         'button',
