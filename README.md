@@ -1,7 +1,7 @@
-FeedHenry Blank Hybrid App
+FeedHenry React Hybrid App
 ==========================
 
-A basic 'hello world' Hybrid App.
+A basic 'hello world' Hybrid App using React.
 
 # Grunt
 
@@ -10,6 +10,8 @@ This template uses [Grunt](http://gruntjs.com/), the Javascript Task Runner. To 
 * Install grunt: ```npm install -g grunt-cli```
 * In your App directory, run: ```npm install```. This installs Grunt plugins, etc for use with this App.
 * Run ```grunt serve``` to preview this App locally
+
+Grunt will monitor changes to *.jsx in the www/app folder and compile these to *.js in the www/build folder
 
 
 ### FeedHenry local development
