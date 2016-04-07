@@ -8,7 +8,6 @@ var CloudForm = React.createClass({
     });
   },
   handleClick: function(event) {
-      console.log(this.state.helloTo);
   	  var that = this;
       this.setState({message: 'Calling Cloud...'});
       $fh.cloud(
