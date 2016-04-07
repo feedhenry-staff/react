@@ -22,6 +22,7 @@ var CloudForm = React.createClass({
       	that.setState({message: res.msg});
       },
       function (code, errorprops, params) {
+        that.setState({message: ""});
         alert('An error occured: ' + code + ' : ' + errorprops);
       });
   },
@@ -37,7 +38,6 @@ var CloudForm = React.createClass({
     );
   }
 });
-
 ReactDOM.render(
   <CloudForm/>,
   document.getElementById('content')
